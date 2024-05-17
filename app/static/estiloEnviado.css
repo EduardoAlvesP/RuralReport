@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 60vh; /* Define a altura da div centralizada para ocupar toda a altura da tela */
+  }
+  .content {
+    /* Estilos da sua div */
+    width: 400px;
+    height: 200px;
+    background-color: #4F7342;
+    color: white;
+    text-align: center; /* Alinha o conteúdo ao centro */
+    padding: 10px;
+    padding-top: 0;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    /* Outros estilos */
+  }
+  h2{
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+    margin-top: 1;
+  }
+  input[type="submit"] {
+    background-color: #081F71; 
+    color:white; 
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+ }
+ input[type="submit"]:hover {
+     background-color: #081853; /* Cor de fundo escurecida */
+   }

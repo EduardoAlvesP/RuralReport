@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<link rel="stylesheet" href="{{url_for('static', filename='estiloEnviado.css')}}">
+<div class="container">
+    <div class="content">
+        <h2>Report concluido! - {{session["lugar"]}}</h2>
+        <p>Seu report foi enviado com sucesso, caso queira enviar outro problema para nós, clique no botão abaixo:</p>
+        <form action="/form" method="post">
+            <input type="submit" value="Enviar outro report" class='btn-submit'>
+        </form>
+        <a href="{{ url_for('logout') }}">Deslogar e sair</a>
+        <a href="{{ url_for('index') }}">Sair</a>
+        <a></a>
+    </div>
+</div>
+{% endblock %}

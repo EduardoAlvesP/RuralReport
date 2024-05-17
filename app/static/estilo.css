@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D&display=swap');
+body{
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    font-family: 'K2D', sans-serif;
+}
+
+.header{
+    text-align: center;
+    overflow: hidden;
+    background-color: #4F7342;
+    color: white;
+    margin: 0;
+ 
+    font-size: large;
+}
+.header > h1{
+    margin:10px
+}
+
+.footer{
+text-align: center;
+ position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;;
+ background-color: #4F7342;;
+ color: white;
+ font-size: large;
+}

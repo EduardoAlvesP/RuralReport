@@ -1,0 +1,52 @@
+.lugar{
+    visibility: hidden;
+    pointer-events: none;
+    display: none;
+  }
+  .login-container {
+    background-color: #4F7342; /* Fundo verde */
+    border-radius: 5px; /* Bordas arredondadas */
+    color: white; /* Texto branco */
+    padding: 20px; /* Algum preenchimento */
+    width:300px;
+    
+     position:absolute;
+     top:50%;
+     left:50%;
+     transform:translate(-50%, -50%);
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .input-group label {
+      display:block;
+  }
+  
+  .input-group input {
+      width: calc(100% - 20px);
+      padding:10px;
+      margin-bottom: 10px;
+  }
+  form{
+    margin-bottom: 4px;
+  }
+  input[type="submit"] {
+    background-color: #ffffff; 
+    color:rgb(0, 0, 0); 
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+ }
+ input[type="submit"]:hover {
+    background-color: #ffffff76; /* Cor de fundo escurecida */
+  }
+  h2{
+    text-align: center;
+  }

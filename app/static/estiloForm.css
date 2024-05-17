@@ -1,0 +1,78 @@
+body, html {
+  margin: 0;
+  padding: 0;
+
+}
+
+.container {
+  background-color: #4F7342;
+  color: white;
+  padding: 10px;
+  width: 450px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 80px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.container > h1, h2 {
+  text-align: center;
+  background-color: #35452F;
+  border-radius: 10px;
+  padding: 20px; 
+}
+
+form {
+   background-color: #35452F;
+   color: white;
+   padding: 10px; 
+   border-radius: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+select, input[type="text"], textarea {
+
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+    width: 100%;
+
+}
+select{
+    border: 1px solid #F6C312;
+}
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    border: 1px solid #F6C312;
+  }
+
+input[type="submit"] {
+   background-color: #081F71; 
+   color:white; 
+   border: none;
+   padding: 10px 20px;
+   text-align: center;
+   text-decoration: none;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   border-radius: 5px;
+   display: block;
+   margin: 0 auto;
+   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+input[type="submit"]:hover {
+    background-color: #081853; /* Cor de fundo escurecida */
+  }
+  .lugar{
+    visibility: hidden;
+    pointer-events: none;
+    display: none;
+  }

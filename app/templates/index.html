@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<link rel="stylesheet" href="{{url_for('static', filename='estiloLogin.css')}}">
+    <div class="login-container">
+        {% if lugar == None %}
+        <h2>ESCANEIE UM QR CODE</h2>
+        {% elif 'email' in session %}
+        <form action="/verificar" method="post">
+            <h2>Logado como: {{session['name']}}</h2>
+            <h3>Email:{{session['email']}} </h3>
+            <textarea name="lugar" class="lugar" cols="30" rows="10">{{lugar}}</textarea>
+            <input type="submit" value="Entrar" class='btn-submit'>
+        </form>
+        <form action="/trocaConta" method="post">
+            <textarea name="lugar" class="lugar" cols="30" rows="10">{{lugar}}</textarea>
+            <input type="submit" value="Trocar conta" class='btn-submit'>
+        </form>
+        {% else %}
+            <form action="/verificar" method="post">
+                <h2>Login</h2>
+                <textarea name="lugar" class="lugar" cols="30" rows="10">{{lugar}}</textarea>
+                <input type="submit" value="Fazer login com o google" class='btn-submit'>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

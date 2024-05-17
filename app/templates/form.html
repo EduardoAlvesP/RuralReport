@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<link rel="stylesheet" href="{{url_for('static', filename='estiloForm.css')}}">
+<div class="container">
+    <h2>{{ session['lugar'] }}</h2>
+    <h2>{{session['name']}}</h2>
+
+    <form action="/valores" method="post">
+        <label for="categoria">Qual a categoria  do problema encontrado?</label><br>
+        <select id="categoria" name="categoria" required>
+            <option value="">Selecione uma opção</option>
+            <option value="infraestrutura">Infraestrutura</option>
+            <option value="eletronico">Eletrônico</option>
+            <option value="limpeza">Limpeza</option>
+            <option value="outro">Outro</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select><br><br>
+
+        <label for="urgencia">Qual a urgência do problema?</label><br>
+        <select id="urgencia" name="urgencia" required>
+            <option value="">Selecione uma opção</option>
+            <option value="baixa">Baixa</option>
+            <option value="media">Média</option>
+            <option value="alta">Alta</option>
+        </select><br><br>
+
+        <label for="descricao">Descreva o problema encontrado:</label><br>
+        <textarea id="descricao" name="descricao" rows="4" cols="50"required></textarea><br><br>
+
+        <input type="submit" value="→" class='btn-submit'>
+        
+    </form> 
+</div>
+
+{% endblock %}
