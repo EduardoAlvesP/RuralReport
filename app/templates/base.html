@@ -10,7 +10,10 @@
     <h1>RuralReport</h1>
   </div>
 <body>
-    <nav><a href="/index">login</a> <a href="{{ url_for('form') }}">form</a><a href="{{ url_for('logout') }}">Sair e deslogar</a></nav>
+    <nav><a href="/index">login</a> 
+        <a href="{{ url_for('form') }}">form</a>
+        <a href="{{ url_for('logout') }}">Sair e deslogar</a>
+        <a href="{{ url_for('dados') }}">Dados</a></nav>
     {% block conteudo %}
     {% endblock %}
     <div class="footer">

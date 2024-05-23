@@ -1,12 +1,34 @@
 from app import app
+from datetime import datetime,timezone
 from flask import render_template, session, redirect, url_for, request
 from flask_mail import Mail, Message
+from flask_sqlalchemy import SQLAlchemy
 import os
 from authlib.integrations.flask_client import OAuth
+
+#CONFIGURAÇÃO DE BANCO
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ruralreport.db"
+db = SQLAlchemy(app)
+class Chamado(db.Model):
+    id = db.Column('id',db.Integer,primary_key=True,autoincrement=True)
+    email = db.Column(db.String(256))
+    lugar = db.Column(db.String(50))
+    categoria = db.Column(db.String(50))
+    urgencia = db.Column(db.String(50))
+    descricao = db.Column(db.String(500))
+    data_chamado = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+
+    def __init__(self,email,lugar,categoria,urgencia,descricao):
+        self.email = email
+        self.lugar = lugar
+        self.categoria = categoria
+        self.urgencia = urgencia
+        self.descricao = descricao
 
 
 # oauth config
 oauth = OAuth(app)
+
 google = oauth.register(
     name='google',
     client_id='601891060733-73ovp9d1j465g1gb1drpnt1jmpe82ol3.apps.googleusercontent.com',
@@ -87,13 +109,19 @@ def form():
 
 @app.route('/valores', methods=['POST'])
 def valores():
-
+    db.create_all()
     lugar = session["lugar"]
     email = session['email']
     name = session['name']
     categoria = request.form.get("categoria")
     urgencia  = request.form.get("urgencia")
     descricao = request.form.get("descricao")
+#BANCO DE DADOS ------------
+
+    chamado = Chamado(email,lugar,categoria,urgencia,descricao)
+    db.session.add(chamado)
+    db.session.commit()
+#EMAIL -------
     msg = Message(
         subject= f'REPORT {lugar}',
         recipients= ['eduardo.alvesp02@gmail.com'],
@@ -122,3 +150,9 @@ def enviado():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+@app.route('/dados')
+def dados():
+    chamados = Chamado.query.all()
+    return render_template('dados.html',chamados=chamados)
+

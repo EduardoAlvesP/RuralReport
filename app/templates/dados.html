@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<link rel="stylesheet" href="{{url_for('static', filename='estiloDados.css')}}">
+<h1>DADOS CHAMADOS</h1>
+<div class ='container'>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>lugar</th>
+                <th>categoria</th>
+                <th>urgencia</th>
+                <th>descricao</th>
+                <th>data_chamado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in chamados %}
+            <tr>
+                <td>{{c.id}}</td>
+                <td>{{c.email}}</td>
+                <td>{{c.lugar}}</td>
+                <td>{{c.categoria}}</td>
+                <td>{{c.urgencia}}</td>
+                <td>{{c.descricao}}</td>
+                <td>{{c.data_chamado}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

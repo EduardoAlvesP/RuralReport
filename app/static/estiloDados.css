@@ -1,0 +1,23 @@
+.container{
+    width: 100%; /* Largura total */
+    border: 1px solid #3bd31d; /* Borda da div */
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Estilo para a tabela */
+.container > table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Colapso das bordas da tabela */
+}
+
+/* Estilo para as células da tabela */
+.container> table > td{
+    border: 1px solid #ccc; /* Borda das células */
+    padding: 8px; /* Espaçamento interno das células */
+    text-align: center; /* Alinhamento do texto no centro */
+}
+.container > table > th {
+    border: 1px solid #ccc; /* Borda das células */
+    padding: 8px; /* Espaçamento interno das células */
+    text-align: center; /* Alinhamento do texto no centro */
+}
