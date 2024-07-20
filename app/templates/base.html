@@ -10,10 +10,10 @@
     <h1>RuralReport</h1>
   </div>
 <body>
-    <nav><a href="/index">login</a> 
-        <a href="{{ url_for('form') }}">form</a>
-        <a href="{{ url_for('logout') }}">Sair e deslogar</a>
-        <a href="{{ url_for('dados') }}">Dados</a></nav>
+    {%if 'email' in session%}
+    <a class="dados"href="{{ url_for('dados') }}">Analisar chamados</a></nav>
+    <a class="logout"href="{{ url_for('logout') }}">Logout</a>
+    {%endif%}
     {% block conteudo %}
     {% endblock %}
     <div class="footer">

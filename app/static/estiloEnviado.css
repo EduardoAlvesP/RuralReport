@@ -41,3 +41,7 @@
  input[type="submit"]:hover {
      background-color: #081853; /* Cor de fundo escurecida */
    }
+ div > a {
+  text-decoration: underline;
+  color: white;
+ }

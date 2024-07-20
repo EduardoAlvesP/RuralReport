@@ -1,7 +1,13 @@
+body{
+color: white;
+}
 .container{
     width: 100%; /* Largura total */
-    border: 1px solid #3bd31d; /* Borda da div */
+    border: 1px solid #216613; /* Borda da div */
+    background-color: #14210f;
+    margin: 5px;
     padding: 10px; /* Espaçamento interno */
+    margin-right: 10px;
 }
 
 /* Estilo para a tabela */
@@ -20,4 +26,52 @@
     border: 1px solid #ccc; /* Borda das células */
     padding: 8px; /* Espaçamento interno das células */
     text-align: center; /* Alinhamento do texto no centro */
+}
+tr.aberto {
+    background-color: #FFCDD2; /* Vermelho claro, por exemplo */
+}
+
+/* Estilo para linhas de chamados fechados */
+tr.fechado {
+    background-color: #C8E6C9; /* Verde claro, por exemplo */
+}
+h1{
+    margin-left: 5px;
+}
+.filtro{
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.dados{
+    display: none;
+}
+button{
+    background-color: #4F7342 ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px;
+}
+button:hover{
+    background-color: #334a2b ;
+}
+input{
+    border: solid  #4F7342 2px;
+    border-radius: 5px;
+    padding: 2px;
+}
+select{
+    border: solid  #4F7342 2px;
+    border-radius: 5px;
+    padding: 2px;
+}
+table{
+    background-color: #14210f;
+    color: black;
+}
+ a{
+    color: white;
+}
+th{
+    color:white;
 }

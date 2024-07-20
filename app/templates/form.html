@@ -2,27 +2,153 @@
 {% block conteudo %}
 <link rel="stylesheet" href="{{url_for('static', filename='estiloForm.css')}}">
 <div class="container">
-    <h2>{{ session['lugar'] }}</h2>
-    <h2>{{session['name']}}</h2>
-
+    <p>{{session['email']}}</p>
+    <h2>{{ session['lugar_nome'] }} <br>{{session['lugar_bloco']}} <br>Andar: {{session['lugar_andar']}}</h2>
+    {%if session['lugar_tipo'] =="aula" %}
     <form action="/valores" method="post">
         <label for="categoria">Qual a categoria  do problema encontrado?</label><br>
-        <select id="categoria" name="categoria" required>
+        <select id="categoria" name="categoria" onchange="mudarSub(this)" required >
             <option value="">Selecione uma opção</option>
             <option value="infraestrutura">Infraestrutura</option>
             <option value="eletronico">Eletrônico</option>
             <option value="limpeza">Limpeza</option>
             <option value="outro">Outro</option>
             <!-- Adicione mais opções conforme necessário -->
-        </select><br><br>
+        </select>
+        <div class="sub_categoria" id="div_subcategoria">
+            <label for="sub_categoria">Qual a subcategoria  do problema encontrado?</label><br>
+            <select id="sub_categoria" name="sub_categoria" required>
 
-        <label for="urgencia">Qual a urgência do problema?</label><br>
-        <select id="urgencia" name="urgencia" required>
+            </select><br><br>
+        </div>
+        <label for="descricao">Descreva o problema encontrado:</label><br>
+        <textarea id="descricao" name="descricao" rows="4" cols="50"required></textarea><br><br>
+
+        <input type="submit" value="→" class='btn-submit'>
+        
+    </form> 
+</div>
+<script>
+       function mudarSub(selectElement){
+        if(selectElement.value == 'infraestrutura'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'janela danificada'
+            op1.text = 'Janela danificada'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'cadeira danificada'
+            op2.text = 'Cadeira danificada'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'parede danificada'
+            op3.text = 'Parede danificada'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'infiltracao'
+            op4.text = 'Infiltração'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'outro'
+            op5.text = 'Outro'
+            subCategoria.appendChild(op5);
+        }
+        if(selectElement.value == 'eletronico'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'ar_condicionado'
+            op1.text = 'Ar-condicionado danificado'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'lampada danificada'
+            op2.text = 'Lâmpada danificada'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'projetor danificado'
+            op3.text = 'Projetor danificado'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'tomada danificada'
+            op4.text = 'Tomada danificada'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'outro'
+            op5.text = 'Outro'
+            subCategoria.appendChild(op5);
+        }
+        if(selectElement.value == 'limpeza'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'chao molhado'
+            op1.text = 'Chão molhado'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'cadeira suja'
+            op2.text = 'Cadeira suja'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'mesa suja'
+            op3.text = 'Mesa suja'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'quadro sujo'
+            op4.text = 'Quadro sujo'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'outro'
+            op5.text = 'Outro'
+            subCategoria.appendChild(op5);
+        }
+        if(selectElement.value == 'outro'){
+            document.getElementById('div_subcategoria').style.display = 'none'
+            let subCategoria = document.getElementById('sub_categoria')
+            let op1 = document.createElement('option')
+            op1.value = ''
+            op1.text = ''
+            subCategoria.appendChild(op1)
+        }
+        if(selectElement.value == ''){
+            document.getElementById('div_subcategoria').style.display = 'none'
+            let subCategoria = document.getElementById('sub_categoria')
+            let op1 = document.createElement('option')
+            op1.value = ''
+            op1.text = ''
+            subCategoria.appendChild(op1)
+        }
+       }
+       
+        
+
+    </script>
+
+
+
+
+    {% elif session['lugar_tipo'] == "banheiro" %}
+    <form action="/valores" method="post">
+        <label for="categoria">Qual a categoria  do problema encontrado?</label><br>
+        <select id="categoria" name="categoria" onchange="mudarSub(this)" required >
             <option value="">Selecione uma opção</option>
-            <option value="baixa">Baixa</option>
-            <option value="media">Média</option>
-            <option value="alta">Alta</option>
-        </select><br><br>
+            <option value="itens">Itens</option>
+            <option value="infraestrutura">Infraestrutura</option>
+            <option value="eletronico">Eletrônico</option>
+            <option value="limpeza">Limpeza</option>
+            <option value="outro">Outro</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+        <div class="sub_categoria" id="div_subcategoria">
+            <label for="sub_categoria">Qual a subcategoria  do problema encontrado?</label><br>
+            <select id="sub_categoria" name="sub_categoria" required>
+
+            </select><br><br>
+        </div>
+
 
         <label for="descricao">Descreva o problema encontrado:</label><br>
         <textarea id="descricao" name="descricao" rows="4" cols="50"required></textarea><br><br>
@@ -31,5 +157,250 @@
         
     </form> 
 </div>
+<script>
+       function mudarSub(selectElement){
+        if(selectElement.value == 'itens'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'ausencia de papel'
+            op1.text = 'Ausência de papel'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'ausencia de sabonete'
+            op2.text = 'Ausência de sabonete'
+            subCategoria.appendChild(op2);
+        }
+        if(selectElement.value == 'infraestrutura'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'janela danificada'
+            op1.text = 'Janela danificada'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'vaso_sanitario'
+            op2.text = 'Vaso sanitário danificado'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'parede danificada'
+            op3.text = 'Parede danificada'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'infiltracao'
+            op4.text = 'Infiltração'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'espelho danificado'
+            op5.text = 'Espelho danificado'
+            subCategoria.appendChild(op5);
+            let op6 = document.createElement('option')
+            op6.value = 'pia danificada'
+            op6.text = 'Pia danificada'
+            subCategoria.appendChild(op6);
+            let op7 = document.createElement('option')
+            op7.value = 'equipamento de higiene danificado'
+            op7.text = 'Equipamento de higiene danificado'
+            subCategoria.appendChild(op7);
+            let op8 = document.createElement('option')
+            op8.value = 'outro'
+            op8.text = 'Outro'
+            subCategoria.appendChild(op8);
+        }
+        if(selectElement.value == 'eletronico'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op2 = document.createElement('option')
+            op2.value = 'lampada danificada'
+            op2.text = 'Lâmpada danificada'
+            subCategoria.appendChild(op2);
+        }
+        if(selectElement.value == 'limpeza'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'chao molhado'
+            op1.text = 'Chão molhado'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'cabine'
+            op2.text = 'Cabine suja'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'espelho sujo'
+            op3.text = 'Espelho sujo'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'pia suja'
+            op4.text = 'Pia suja'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'outro'
+            op5.text = 'Outro'
+            subCategoria.appendChild(op5);
+        }
+        if(selectElement.value == 'outro'){
+            document.getElementById('div_subcategoria').style.display = 'none'
+            let subCategoria = document.getElementById('sub_categoria')
+            let op1 = document.createElement('option')
+            op1.value = ''
+            op1.text = ''
+            subCategoria.appendChild(op1)
+        }
+        if(selectElement.value == ''){
+            document.getElementById('div_subcategoria').style.display = 'none'
+            let subCategoria = document.getElementById('sub_categoria')
+            let op1 = document.createElement('option')
+            op1.value = ''
+            op1.text = ''
+            subCategoria.appendChild(op1)
+        }
+       }
+       
+        
 
+    </script>
+
+    {% elif session['lugar_tipo'] == "lab" %}
+     <form action="/valores" method="post">
+        <label for="categoria">Qual a categoria  do problema encontrado?</label><br>
+        <select id="categoria" name="categoria" onchange="mudarSub(this)" required >
+            <option value="">Selecione uma opção</option>
+            <option value="infraestrutura">Infraestrutura</option>
+            <option value="eletronico">Eletrônico</option>
+            <option value="limpeza">Limpeza</option>
+            <option value="outro">Outro</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+        <div class="sub_categoria" id="div_subcategoria">
+            <label for="sub_categoria">Qual a subcategoria  do problema encontrado?</label><br>
+            <select id="sub_categoria" name="sub_categoria" required>
+
+            </select><br><br>
+        </div>
+
+        <label for="descricao">Descreva o problema encontrado:</label><br>
+        <textarea id="descricao" name="descricao" rows="4" cols="50"required></textarea><br><br>
+
+        <input type="submit" value="→" class='btn-submit'>
+        
+    </form> 
+</div>
+<script>
+       function mudarSub(selectElement){
+        if(selectElement.value == 'infraestrutura'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'janela danificada'
+            op1.text = 'Janela danificada'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'cadeira danificada'
+            op2.text = 'Cadeira danificada'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'parede danificada'
+            op3.text = 'Parede danificada'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'infiltracao'
+            op4.text = 'Infiltração'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'outro'
+            op5.text = 'Outro'
+            subCategoria.appendChild(op5);
+        }
+        if(selectElement.value == 'eletronico'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'ar_condicionado'
+            op1.text = 'Ar-condicionado danificado'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'lampada danificada'
+            op2.text = 'Lâmpada danificada'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'projetor danificado'
+            op3.text = 'Projetor danificado'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'tomada danificada'
+            op4.text = 'Tomada danificada'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'hardware danificado'
+            op5.text = 'Hardware danificado'
+            subCategoria.appendChild(op5);
+            let op6 = document.createElement('option')
+            op6.value = 'software danificado'
+            op6.text = 'Software danificado'
+            subCategoria.appendChild(op6);
+            let op7 = document.createElement('option')
+            op7.value = 'outro'
+            op7.text = 'Outro'
+            subCategoria.appendChild(op7);
+        }
+        if(selectElement.value == 'limpeza'){
+            let subCategoria = document.getElementById('sub_categoria')
+            subCategoria.innerHTML = ''
+            document.getElementById('div_subcategoria').style.display = 'block'
+            let op1 = document.createElement('option')
+            op1.value = 'chao molhado'
+            op1.text = 'Chão molhado'
+            subCategoria.appendChild(op1)
+            let op2 = document.createElement('option')
+            op2.value = 'cadeira suja'
+            op2.text = 'Cadeira suja'
+            subCategoria.appendChild(op2);
+            let op3 = document.createElement('option')
+            op3.value = 'mesa suja'
+            op3.text = 'Mesa suja'
+            subCategoria.appendChild(op3);
+            let op4 = document.createElement('option')
+            op4.value = 'quadro sujo'
+            op4.text = 'Quadro sujo'
+            subCategoria.appendChild(op4);
+            let op5 = document.createElement('option')
+            op5.value = 'hardware sujo'
+            op5.text = 'Hardware sujo'
+            subCategoria.appendChild(op5);
+            let op6 = document.createElement('option')
+            op6.value = 'outro'
+            op6.text = 'Outro'
+            subCategoria.appendChild(op6);
+        }
+        if(selectElement.value == 'outro'){
+            document.getElementById('div_subcategoria').style.display = 'none'
+            let subCategoria = document.getElementById('sub_categoria')
+            let op1 = document.createElement('option')
+            op1.value = ''
+            op1.text = ''
+            subCategoria.appendChild(op1)
+        }
+        if(selectElement.value == ''){
+            document.getElementById('div_subcategoria').style.display = 'none'
+            let subCategoria = document.getElementById('sub_categoria')
+            let op1 = document.createElement('option')
+            op1.value = ''
+            op1.text = ''
+            subCategoria.appendChild(op1)
+        }
+       }
+       
+        
+
+    </script>
+
+
+    {% endif%}
 {% endblock %}

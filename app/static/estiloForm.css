@@ -20,6 +20,7 @@ body, html {
   background-color: #35452F;
   border-radius: 10px;
   padding: 20px; 
+  margin-top: 0px;
 }
 
 form {
@@ -75,4 +76,11 @@ input[type="submit"]:hover {
     visibility: hidden;
     pointer-events: none;
     display: none;
+  }
+  .sub_categoria{
+    display: none;
+  }
+  p{
+    margin-left: 10px;
+    margin-bottom: 5px; 
   }
